@@ -64,10 +64,12 @@ public class main {
     };
 
     public static void main(String[] args) {
+
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-        executorService.schedule(focusTime, 2, TimeUnit.SECONDS);
-        executorService.schedule(breakTime, 25, TimeUnit.SECONDS);
+        executorService.schedule(focusTime, 2, TimeUnit.HOURS);
+
+        executorService.schedule(breakTime, 25, TimeUnit.MINUTES);
 
     }
 }
