@@ -1,0 +1,11 @@
+{
+    "name": "Sho-doro Timer",
+    "version": "1.0.0",
+    "description": "A tool to maximize academic performance while binge-watching a show",
+    "manifest": 3,
+    "author": "Abel Vayalinkal",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Sho-doro Timer"
+    }
+}
