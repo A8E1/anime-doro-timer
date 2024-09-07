@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime-doro</title>
+  </head>
+  <body>
+    <h1>Anime-Doro Timer</h1>
+
+    <button id="start">Start</button>
+    <h1 id="timer">00:00:00</h1>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    function updateTimer(milliseconds) {
+      let hour = Math.floor(milliseconds / (1000 * 60 * 60));
+      let minutes = Math.floor(milliseconds / (1000 * 60));
+      let seconds = Math.floor(milliseconds / 1000);
+
+      if (hour < 10) {
+        hour = "0" + hour;
+      }
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+
+      document
+        .getElementById("timer")
+        .textContent(`${hour}:${minutes}:${seconds}`);
+    }
+
+    let timeoutID = "truthy";
+
+    const sleep = (milliseconds) => {
+      return new Promise((resolve) => {
+        timeoutID = setTimeout(resolve, milliseconds);
+      });
+    };
+
+    const breakTimeSound = () => {
+      let sound = new Audio("naruto.wav");
+      sound.play();
+    };
+
+    const focusTimeSound = () => {
+      let sound = new Audio("luffy.wav");
+      sound.play();
+    };
+
+    async function animeDoro() {
+      while (timeoutID) {
+        focusTimeSound();
+        await sleep(1000 * 60 * 60 * 2);
+        breakTimeSound(1000 * 60 * 25);
+        await sleep(2000);
+      }
+    }
+
+    document.getElementById("start").addEventListener("click", async () => {
+      timeoutID = "truthy";
+      animeDoro();
+    });
+
+    document.getElementById("stop").addEventListener("click", () => {
+      clearTimeout(timeoutID);
+      timeoutID = null;
+    });
+  </script>
+</html>
